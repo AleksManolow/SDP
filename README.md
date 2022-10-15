@@ -1,2 +1,1 @@
-# SDP
-Data Structures and Programming @ FMI
+# :books: Data structures and programming course at FMI Sofia Universit
