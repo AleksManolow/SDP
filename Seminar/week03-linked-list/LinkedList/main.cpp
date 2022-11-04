@@ -16,8 +16,7 @@ int main()
     int topEl = linkedList->top();
     std::cout << topEl << std::endl;
     linkedList->printList();
-
-
+    
     delete linkedList;
     return 0;
 }

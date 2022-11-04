@@ -15,26 +15,18 @@ class LinkedList
 private:
     Node<T> *front;
     size_t size;
+
+    void copy(const LinkedList<T>&);
+    void erase();
 public:
     LinkedList(){   front = nullptr;    size = 0;}
-    ~LinkedList()
-    {
-        Node<T>* temp; 
-        while (front != nullptr)
-        {
-            temp = front;
-            front = front->next;
-            delete temp;
-        }
-        size = 0;
-    }
-    // LinkedList(const LinkedList<T>& other) {
-        
-    // }
+    LinkedList(const LinkedList<T>& other);
+    LinkedList<T>& operator=(const LinkedList<T>& other);
+    ~LinkedList();
+
     // bool operator==(const LinkedList<T>& other) const {
     // }
-    // LinkedList<T>& operator=(const LinkedList<T>& other) {
-    // }
+
     void insertAtPos(T a, std::size_t pos = 0);
     void removeAtPos(std::size_t pos = 0);
     const T& getElementAtPos(unsigned pos);
@@ -67,7 +59,7 @@ public:
 };
 
 template<typename T>
-void LinkedList<T>::insertAtPos(T a, std::size_t pos = 0) 
+void LinkedList<T>::insertAtPos(T a, std::size_t pos) 
 {
         
     if ((pos < 0) || (pos > size + 1))
@@ -128,7 +120,7 @@ void LinkedList<T>::insertAtPos(T a, std::size_t pos = 0)
 }
 
 template<typename T>
-void LinkedList<T>::removeAtPos(std::size_t pos = 0) 
+void LinkedList<T>::removeAtPos(std::size_t pos) 
 {
     if ((pos < 0) || (pos > size))
     {
@@ -200,6 +192,67 @@ void LinkedList<T>::printList()
         q = p->next;
         count++;
     }
+}
+
+template<typename T>
+LinkedList<T>::LinkedList(const LinkedList<T>& other) 
+{
+    copy(other);
+}
+
+template<typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other) 
+{
+    if (this != &other)
+    {
+        erase();
+
+        copy(other);
+    }
+    return *this;
+    
+}
+
+template<typename T>
+LinkedList<T>::~LinkedList()
+{
+    erase();
+}
+
+template<typename T>
+void LinkedList<T>::copy(const LinkedList<T>& other)
+{
+    if (!other)
+    {
+        front = nullptr;
+    }
+    Node<T>* tmp = other.front;
+
+    front = new Node<T>(tmp->key);
+    
+    Node<T>* current = front;
+    tmp = tmp->next;
+
+    while (tmp)
+    {
+        current->next = new Node<T>(tmp->key);
+        current = current->next;
+        tmp = tmp->next;
+    }
+    
+}
+
+template<typename T>
+void LinkedList<T>::erase()
+{
+    Node<T>* temp; 
+    while (front != nullptr)
+    {
+        temp = front;
+        front = front->next;
+        delete temp;
+    }
+    size = 0;
 }
 
 #endif
