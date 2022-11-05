@@ -17,6 +17,10 @@ int main()
     std::cout << topEl << std::endl;
     linkedList->printList();
     
+    
+    linkedList->reverse();
+    linkedList->printList();
+
     delete linkedList;
     return 0;
 }

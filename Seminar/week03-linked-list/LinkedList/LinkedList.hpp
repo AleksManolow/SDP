@@ -33,6 +33,7 @@ public:
     T& top() const;
     void printList();
     std::size_t getSize() { return size;    }
+    void reverse();
     // void sort() 
     // { // sort based on operator <
         
@@ -253,6 +254,24 @@ void LinkedList<T>::erase()
         delete temp;
     }
     size = 0;
+}
+
+template<typename T>
+void LinkedList<T>::reverse()
+{
+    
+    Node<T>* prev = nullptr;
+    Node<T>* curr = front;
+    Node<T>* next = nullptr;
+    while (curr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+
+    }
+    front = prev;
 }
 
 #endif
