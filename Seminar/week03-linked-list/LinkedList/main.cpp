@@ -22,5 +22,19 @@ int main()
     linkedList->printList();
 
     delete linkedList;
+
+    //Test operator==
+    LinkedList<int> linkedListOne;
+    linkedListOne.insertAtPos(6);
+    linkedListOne.insertAtPos(81);
+    linkedListOne.insertAtPos(78);
+    LinkedList<int> linkedListTwo;
+    linkedListTwo.insertAtPos(6);
+    linkedListTwo.insertAtPos(81);
+    linkedListTwo.insertAtPos(78);
+
+    std::cout << linkedListOne.operator==(linkedListTwo) << std::endl;
+
+
     return 0;
 }

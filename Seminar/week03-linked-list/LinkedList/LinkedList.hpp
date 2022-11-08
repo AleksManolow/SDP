@@ -24,8 +24,7 @@ public:
     LinkedList<T>& operator=(const LinkedList<T>& other);
     ~LinkedList();
 
-    // bool operator==(const LinkedList<T>& other) const {
-    // }
+    bool operator==(const LinkedList<T>& other) const;
 
     void insertAtPos(T a, std::size_t pos = 0);
     void removeAtPos(std::size_t pos = 0);
@@ -272,6 +271,28 @@ void LinkedList<T>::reverse()
 
     }
     front = prev;
+}
+
+template<typename T>
+bool LinkedList<T>::operator==(const LinkedList<T>& other) const 
+{
+    Node<T>* p = front;
+    Node<T>* q = other.front;
+    if (size != other.size)
+    {
+        return false;
+    }
+
+    while (q != nullptr && p != nullptr)
+    {
+        if (q->key != p->key)
+        {
+            return false;
+        }
+        p = p->next;
+        q = q->next;    
+    }
+    return true;
 }
 
 #endif
