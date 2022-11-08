@@ -35,6 +35,20 @@ int main()
 
     std::cout << linkedListOne.operator==(linkedListTwo) << std::endl;
 
+    //Test Sort 
+    LinkedList<int> linkedListSorted;
+    linkedListSorted.insertAtPos(4);
+    linkedListSorted.insertAtPos(5);
+    linkedListSorted.insertAtPos(2);
+    linkedListSorted.insertAtPos(7);
+    linkedListSorted.insertAtPos(9);
 
+    std::cout << "Before sort:"<< std::endl;
+    linkedListSorted.printList();
+
+    linkedListSorted.sort();
+    std::cout << "After sort:"<< std::endl;
+    linkedListSorted.printList();
+    
     return 0;
 }

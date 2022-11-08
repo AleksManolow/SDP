@@ -33,10 +33,8 @@ public:
     void printList();
     std::size_t getSize() { return size;    }
     void reverse();
-    // void sort() 
-    // { // sort based on operator <
-        
-    // }
+    void sort();
+
 	// struct Iterator 
     // { // can this be also class?
 	// 	Iterator() : current(nullptr) {};
@@ -294,6 +292,33 @@ bool LinkedList<T>::operator==(const LinkedList<T>& other) const
     }
     return true;
 }
+template<typename T>
+void LinkedList<T>::sort()
+{
+    Node<T>* curr = front;
+    Node<T>* index = nullptr;
 
+    if (front == nullptr)
+    {
+        return;
+    }
+
+    while (curr != nullptr)
+    {
+        index = curr->next;
+
+        while (index != nullptr)
+        {
+            if (curr->key > index->key)
+            {
+                T temp = curr->key;
+                curr->key = index->key;
+                index->key = temp;
+            }
+            index = index->next;
+        }
+        curr = curr->next;
+    }
+}
 #endif
 
