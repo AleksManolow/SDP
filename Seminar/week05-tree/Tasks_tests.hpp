@@ -10,6 +10,18 @@ void clean(Node*& n) {
     delete n;
 }
 
+bool operator==(std::vector<int> v1, std::vector<int> v2)
+{
+    if (v1.size() != v2.size())
+        return false;
+    for (size_t i = 0; i < v1.size(); i++)
+    {
+        if (v1[i] != v2[i])
+            return false;
+    }
+    return true;
+}
+
 TEST_CASE("Validate countElements") {
     Node* test = new Node(5);
     test->left = new Node(7);
@@ -118,6 +130,36 @@ TEST_CASE("Validate isBST") {
 
     test->right->left = new Node(30);
     CHECK(isBST(test) == false);
+
+    clean(test);
+}
+
+TEST_CASE("Validate crawl order") {
+
+    struct Node* test = new Node(1);
+    test->left = new Node(2);
+    test->right = new Node(3);
+    test->left->left = new Node(4);
+    test->left->right = new Node(5);
+    test->right->left = new Node(6);
+    test->right->right = new Node(7);
+
+    std::vector<int> inorderOrder;
+    std::vector<int> preorderOrder;
+    std::vector<int> postorderOrder;
+
+    inorder(test, inorderOrder);
+    preorder(test, preorderOrder);
+    postorder(test, postorderOrder);
+    
+    std::vector<int> testInorderOrder = {4, 2, 5, 1, 6, 3, 7 };
+    std::vector<int> testInorderOrder1 = {4, 2, 5, 1, 6, 3, 7 };
+    std::vector<int> testPreorderOrder = {1, 2, 4, 5, 3, 6, 7 };
+    std::vector<int> testPostorderOrder = {4, 5, 2, 6, 7, 3, 1};
+    
+    CHECK(inorderOrder == testInorderOrder);
+    CHECK(preorderOrder == testPreorderOrder);
+    CHECK(postorderOrder == testPostorderOrder);
 
     clean(test);
 }

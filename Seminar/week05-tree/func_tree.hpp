@@ -75,4 +75,31 @@ bool isBST(Node* tree)
         return (tree->key > tree->left->key) && isBST(tree->left);
     return (tree->key > tree->left->key) && isBST(tree->left) && (tree->key < tree->right->key) && isBST(tree->right);
 }
+//task08
+void inorder(Node* tree,std::vector<int>& inorderOrder)
+{
+    if (tree == NULL)
+        return;
+
+    inorder(tree -> left, inorderOrder);
+    inorderOrder.push_back(tree -> key);
+    inorder(tree -> right, inorderOrder);
+}
+void preorder(Node* tree,std::vector<int>& preorderOrder)
+{
+    if (tree == NULL)
+        return;
+
+    preorderOrder.push_back(tree -> key);
+    preorder(tree -> left, preorderOrder);
+    preorder(tree -> right, preorderOrder);
+}
+void postorder(Node* tree,std::vector<int>& postorderOrder)
+{
+    if (tree == NULL)
+        return;
+    postorder(tree -> left, postorderOrder);
+    postorder(tree -> right, postorderOrder);
+    postorderOrder.push_back(tree -> key);
+}
 #endif
