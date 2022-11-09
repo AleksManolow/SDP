@@ -96,3 +96,28 @@ TEST_CASE("Validate isSymmetric") {
     CHECK(isSymmetric(test) == false);
     clean(test);
 }
+
+TEST_CASE("Validate isBST") {
+
+    Node* test = new Node(5);
+    CHECK(isBST(test) == true);
+
+
+    test->left = new Node(0);
+    CHECK(isBST(test) == true);
+
+    test->left->key = 12;
+    CHECK(isBST(test) == false);
+
+    test->left->key = 0;
+    test->right = new Node(10);
+    CHECK(isBST(test) == true);
+
+    test->right->right = new Node(20);
+    CHECK(isBST(test) == true);
+
+    test->right->left = new Node(30);
+    CHECK(isBST(test) == false);
+
+    clean(test);
+}

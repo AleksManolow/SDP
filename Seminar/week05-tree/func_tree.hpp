@@ -64,7 +64,15 @@ bool isSymmetric(Node* tree)
 {
     return isMirror(tree, tree);
 }
-
-
-
+//task07
+bool isBST(Node* tree)
+{
+    if (tree->left == nullptr && tree->right == nullptr)
+        return true;
+    if (tree->left == nullptr)
+        return (tree->key < tree->right->key) && isBST(tree->right);
+    if (tree->right == nullptr)
+        return (tree->key > tree->left->key) && isBST(tree->left);
+    return (tree->key > tree->left->key) && isBST(tree->left) && (tree->key < tree->right->key) && isBST(tree->right);
+}
 #endif
