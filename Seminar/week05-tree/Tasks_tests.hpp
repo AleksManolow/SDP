@@ -76,3 +76,23 @@ TEST_CASE("Validate sumElementsAtLevel") {
 
     clean(test);
 }
+
+TEST_CASE("Validate isSymmetric") {
+    Node* test = new Node(5);
+    CHECK(isSymmetric(test) == true);
+
+    test->left = new Node(6);
+    test->right = new Node(1);
+    CHECK(isSymmetric(test) == false);
+
+    test->left->key = 1;
+    CHECK(isSymmetric(test) == true);
+
+    test->left->left = new Node(2);
+    test->right->right = new Node(2);
+    CHECK(isSymmetric(test) == true);
+
+    test->right->right = new Node(3);
+    CHECK(isSymmetric(test) == false);
+    clean(test);
+}

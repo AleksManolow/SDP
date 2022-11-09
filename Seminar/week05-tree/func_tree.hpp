@@ -49,6 +49,21 @@ int sumElementsAtLevel(Node* tree, unsigned level)
         return tree->key;    
     return sumElementsAtLevel(tree->left, level - 1) + sumElementsAtLevel(tree->right, level - 1);
 }
+//task06
+bool isMirror(Node* treeL, Node* treeR)
+{
+    if (treeL == nullptr && treeR == nullptr)
+        return true;
+
+    if (treeL && treeR && treeL->key == treeR->key)
+        return isMirror(treeL->left, treeR->right)
+               && isMirror(treeL->right, treeR->left); 
+    return false;
+}
+bool isSymmetric(Node* tree)
+{
+    return isMirror(tree, tree);
+}
 
 
 
