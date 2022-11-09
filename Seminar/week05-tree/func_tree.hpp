@@ -33,6 +33,13 @@ int height(Node* tree)
         return 0;
     return 1 + std::max(height(tree->left), height(tree->right));
 }
+//task04
+int sumElements(Node* tree)
+{
+    if (tree == nullptr)
+        return 0;
+    return tree->key + sumElements(tree->left) + sumElements(tree->right);
+}
 
 
 

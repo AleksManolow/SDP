@@ -47,3 +47,15 @@ TEST_CASE("Validate height") {
     CHECK(height(test) == 4);
     clean(test);
 }
+
+TEST_CASE("Validate sumElements") {
+    CHECK(sumElements(nullptr) == 0);
+    Node* test = new Node(5);
+    CHECK(sumElements(test) == 5);
+    test->left = new Node(6);
+    test->right = new Node(1);
+    test->left->left = new Node(2);
+    test->left->left->right = new Node(3);
+    CHECK(sumElements(test) == 17);
+    clean(test);
+}
