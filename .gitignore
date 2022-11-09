@@ -369,4 +369,6 @@ FodyWeavers.xsd
 *.exe
 *.out
 
+# Test - doctest file
+doctest.h
 
