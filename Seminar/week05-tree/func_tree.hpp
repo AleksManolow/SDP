@@ -40,6 +40,15 @@ int sumElements(Node* tree)
         return 0;
     return tree->key + sumElements(tree->left) + sumElements(tree->right);
 }
+//task05
+int sumElementsAtLevel(Node* tree, unsigned level)
+{
+    if (tree == nullptr)
+        return 0;
+    if (level == 0)
+        return tree->key;    
+    return sumElementsAtLevel(tree->left, level - 1) + sumElementsAtLevel(tree->right, level - 1);
+}
 
 
 

@@ -59,3 +59,20 @@ TEST_CASE("Validate sumElements") {
     CHECK(sumElements(test) == 17);
     clean(test);
 }
+
+
+TEST_CASE("Validate sumElementsAtLevel") {
+    CHECK(sumElementsAtLevel(nullptr, 0) == 0);
+    Node* test = new Node(5);
+    CHECK(sumElementsAtLevel(test,0) == 5);
+    test->left = new Node(6);
+    test->right = new Node(1);
+    test->left->left = new Node(2);
+    test->left->left->right = new Node(3);
+    CHECK(sumElementsAtLevel(test, 0) == 5);
+    CHECK(sumElementsAtLevel(test, 1) == 7);
+    CHECK(sumElementsAtLevel(test, 2) == 2);
+    CHECK(sumElementsAtLevel(test, 3) == 3);
+
+    clean(test);
+}
