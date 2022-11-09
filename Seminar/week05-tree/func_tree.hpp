@@ -26,6 +26,13 @@ int countLeafs(Node* tree)
         return 1;
     return countLeafs(tree->left) + countLeafs(tree->right);
 }
+//task03
+int height(Node* tree)
+{
+    if (tree == nullptr)
+        return 0;
+    return 1 + std::max(height(tree->left), height(tree->right));
+}
 
 
 

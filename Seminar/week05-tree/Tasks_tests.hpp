@@ -35,3 +35,15 @@ TEST_CASE("Validate countLeafs") {
     CHECK(countLeafs(test) == 3);
     clean(test);
 }
+
+TEST_CASE("Validate height") {
+    CHECK(height(nullptr) == 0);
+    Node* test = new Node(5);
+    CHECK(height(test) == 1);
+    test->left = new Node(7);
+    test->right = new Node(7);
+    test->left->left = new Node(14);
+    test->left->left->right = new Node(18);
+    CHECK(height(test) == 4);
+    clean(test);
+}
