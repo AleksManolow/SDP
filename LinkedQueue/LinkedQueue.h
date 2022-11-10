@@ -114,11 +114,11 @@ void LinkedQueue<T>::copy(LinkedQueue<T> const& other)
 
     if (other.front != nullptr)
     {
-        back = front = new QueueElement<T>{other->date, nullptr};
+        back = front = new QueueElement<T>(other.front->data, nullptr);
         QueueElement<T>* nextToCopy = other.front->next;
         while (nextToCopy)
         {
-            back = back->next = new QueueElement<T>{nextToCopy->date, nullptr};
+            back = back->next = new QueueElement<T>(nextToCopy->data, nullptr);
             nextToCopy = nextToCopy->next;
         }
     }
@@ -133,7 +133,7 @@ void LinkedQueue<T>::erase()
 {
     while (front)
     {
-        QueueElement<T> temp = front;
+        QueueElement<T>* temp = front;
         front = front->next;
         delete temp;
     }
