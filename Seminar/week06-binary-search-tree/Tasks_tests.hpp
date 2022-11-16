@@ -76,7 +76,7 @@ TEST_CASE("Validate LCA") {
 
     CHECK(LCA(test, 50, 200) == 100);
     CHECK(LCA(test, 15, 12) == 15);
-    //CHECK(LCA(test, 15, 120) == -1);
+    CHECK(LCA(test, 15, 120) == -1);
 
     clean(test);
 }

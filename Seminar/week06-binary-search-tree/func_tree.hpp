@@ -57,7 +57,7 @@ Node* getMax(Node* tree)
 //task05
 int LCA(Node* tree, int fstEl, int secEl)
 {
-    if (!tree)
+    if (!isContains(tree, fstEl) || !isContains(tree, secEl))
         return -1;
 
     if(tree->key > std::max(fstEl,secEl))
