@@ -9,7 +9,17 @@ struct Node
 
     Node(int _key):key(_key), left(nullptr), right(nullptr){}
 };
-
+//task01
+bool isContains(Node* tree, int value)
+{
+    if(!tree)
+        return false;
+    if(tree->key == value)
+        return true;
+    if(tree->key > value)
+        return isContains(tree->left, value);
+    return isContains(tree->right, value);
+}
 //task03
 Node* getMin(Node* tree)
 {

@@ -10,6 +10,20 @@ void clean(Node*& n) {
     delete n;
 }
 
+TEST_CASE("Validate isContains") {
+
+    Node* test = new Node(100);
+    test->left = new Node(50);
+    test->right = new Node(140);
+    test->left->left = new Node(25);
+
+    CHECK(isContains(test, 140) == true);
+    CHECK(isContains(test, 25) == true);
+    CHECK(isContains(test, 0) == false);
+    CHECK(isContains(test, 150) == false);
+    clean(test);
+}
+
 TEST_CASE("Validate getMin") {
 
     Node* test = new Node(100);
