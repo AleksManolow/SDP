@@ -24,6 +24,20 @@ TEST_CASE("Validate isContains") {
     clean(test);
 }
 
+TEST_CASE("Validate insert") {
+
+    Node* test = new Node(100);
+    test->left = new Node(50);
+    test->right = new Node(140);
+    test->left->left = new Node(25);
+    test = insert(test, 150);
+    CHECK(test->right->right->key == 150);
+    test = insert(test, 75);
+    CHECK(test->left->right->key == 75);
+
+    clean(test);
+}
+
 TEST_CASE("Validate getMin") {
 
     Node* test = new Node(100);
@@ -37,6 +51,7 @@ TEST_CASE("Validate getMin") {
 
     clean(test);
 }
+
 TEST_CASE("Validate getMax") {
 
     Node* test = new Node(100);

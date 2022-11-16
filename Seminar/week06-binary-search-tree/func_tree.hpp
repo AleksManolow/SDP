@@ -20,6 +20,22 @@ bool isContains(Node* tree, int value)
         return isContains(tree->left, value);
     return isContains(tree->right, value);
 }
+//task02
+Node* insert(Node* tree, int el)
+{
+    if (!tree)
+    {
+        Node* newNode = new Node(el);
+        return newNode;
+    }
+
+    if (el < tree->key)
+        tree->left = insert(tree->left, el);
+    else
+        tree->right = insert(tree->right, el);
+    
+    return tree;
+}
 //task03
 Node* getMin(Node* tree)
 {
