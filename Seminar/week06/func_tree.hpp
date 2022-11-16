@@ -22,7 +22,11 @@ Node* getMin(Node* tree)
 //task04
 Node* getMax(Node* tree)
 {
-    return tree;
+    if(!tree)
+        return nullptr;
+    if(!tree->right)
+        return tree;
+    return getMax(tree->right);
 }
 
 #endif

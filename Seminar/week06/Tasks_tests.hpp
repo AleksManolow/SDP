@@ -23,3 +23,15 @@ TEST_CASE("Validate getMin") {
 
     clean(test);
 }
+TEST_CASE("Validate getMax") {
+
+    Node* test = new Node(100);
+    test->left = new Node(50);
+    test->right = new Node(140);
+    test->left->left = new Node(25);
+    CHECK(getMax(test)->key == 140);
+    test->right->right = new Node(180);
+    CHECK(getMax(test)->key == 180);
+
+    clean(test);
+}
