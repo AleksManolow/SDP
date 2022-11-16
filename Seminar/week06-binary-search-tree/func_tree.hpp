@@ -54,5 +54,18 @@ Node* getMax(Node* tree)
         return tree;
     return getMax(tree->right);
 }
+//task05
+int LCA(Node* tree, int fstEl, int secEl)
+{
+    if (!tree)
+        return -1;
+
+    if(tree->key > std::max(fstEl,secEl))
+        return LCA(tree->left, fstEl, secEl);
+    else if(tree->key < std::min(fstEl,secEl))
+        return LCA(tree->right, fstEl, secEl);
+
+    return tree->key;
+}
 
 #endif
