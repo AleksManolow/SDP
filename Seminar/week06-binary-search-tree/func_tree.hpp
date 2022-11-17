@@ -67,5 +67,44 @@ int LCA(Node* tree, int fstEl, int secEl)
 
     return tree->key;
 }
+//task06
+Node* remove(Node* tree, int key)
+{
+    if (tree == NULL)
+        return tree;
+  
+    if (key < tree->key)
+        tree->left = remove(tree->left, key);
 
+    else if (key > tree->key)
+        tree->right = remove(tree->right, key);
+    else
+    {
+        if (!tree->left && !tree->right)
+        {
+            delete tree;
+            return nullptr;
+        }
+        else if (!tree->left)
+        {
+            Node* newNode = tree->right;
+            delete tree;
+            return newNode;
+        }
+        else if (!tree->right)
+        {
+            Node* newNode = tree->left;
+            delete tree;
+            return newNode;
+        }
+        
+        Node* temp = getMin(tree->right);
+
+        tree->key = temp->key;
+
+        tree->right = remove(tree->right, temp->key);
+    }
+
+    return tree;
+}
 #endif

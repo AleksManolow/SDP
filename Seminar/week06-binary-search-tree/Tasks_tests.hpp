@@ -80,3 +80,19 @@ TEST_CASE("Validate LCA") {
 
     clean(test);
 }
+
+TEST_CASE("Validate remove") {
+
+    Node* test = new Node(100);
+    test->left = new Node(50);
+    test->right = new Node(140);
+    test->left->left = new Node(25);
+    test = remove(test, 25);
+    CHECK(test->left->left == nullptr);
+    test = remove(test, 100);
+    CHECK(test->key == 140);
+    CHECK(test->right == nullptr);
+
+
+    clean(test);
+}
