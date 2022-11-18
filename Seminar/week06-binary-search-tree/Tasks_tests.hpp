@@ -96,3 +96,18 @@ TEST_CASE("Validate remove") {
 
     clean(test);
 }
+
+TEST_CASE("Validate isBalance") {
+
+    Node* test = new Node(10);
+    test->left = new Node(5);
+    test->right = new Node(30);
+    test->right->left = new Node(15);
+    test->right->right = new Node(20);
+    CHECK(isBalance(test) == 3);
+
+    test->right->left->left = new Node(13);
+    CHECK(isBalance(test) == -1);
+
+    clean(test);
+}

@@ -107,4 +107,22 @@ Node* remove(Node* tree, int key)
 
     return tree;
 }
+//task07
+int isBalance(Node* tree)
+{
+    if (tree == NULL)
+        return 0;
+    int lh = isBalance(tree->left);
+    if (lh == -1)
+        return -1;
+    int rh = isBalance(tree->right);
+    if (rh == -1)
+        return -1;
+ 
+    if (abs(lh - rh) > 1)
+        return -1;
+    else
+        return std::max(lh, rh) + 1;
+}
+
 #endif
