@@ -9,14 +9,16 @@ int main()
     DLL.pushFront(15);
     DLL.pushFront(7);
 
-    std::cout << DLL.front() << std::endl;
-    DLL.popFront();
-    std::cout << DLL.front() << std::endl;
-    DLL.popFront();
-    std::cout << DLL.front() << std::endl;
-    DLL.popFront();
-    std::cout << DLL.front() << std::endl;
-    DLL.popFront();
+   
+   for (auto it : DLL)
+    {
+        std::cout << it << std::endl;
+    }
+
+    for (auto it = DLL.begin(); it != DLL.end(); it++)
+    {
+        std::cout << *it << std::endl;
+    }
     
-    std::cout << DLL.empty() << std::endl;
+    return 0;
 }

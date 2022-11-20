@@ -12,6 +12,59 @@ struct DLListNode {
     DLListNode(const T& elem, DLListNode<T>* n = nullptr, DLListNode<T>* p = nullptr) : data{elem}, next {n}, prev{p} {} 
 };
 
+template <typename T>
+class DoublyLinkedList;
+
+template<typename T>
+class Iterator {
+private:
+    using Node = DLListNode<T>;
+
+    friend DoublyLinkedList<T>;
+
+    Node* current;
+public:
+    Iterator(Node* c = nullptr) : current(c) {}
+    Iterator<T>& operator++() 
+    {
+        if (current)
+            current = current->next;
+        return *this;
+    }
+    Iterator<T> operator++(int) 
+    {
+        Iterator<T> copy = *this;
+        ++(*this);
+        return copy;
+    }
+
+    Iterator<T>& operator--() 
+    {
+        if (current)
+            current = current->prev;
+        return *this;
+    }
+    Iterator<T> operator--(int) 
+    {
+        Iterator<T> copy = *this;
+        --(*this);
+        return copy;
+    }
+
+    const T& operator*() 
+    {
+        return current->data;
+    }
+
+    bool operator==(const Iterator& other) const 
+    {
+        return current == other.current;
+    }
+    bool operator!=(const Iterator& other) const 
+    {
+        return !(*this == other);
+    }
+};
 
 template<typename T>
 class DoublyLinkedList 
@@ -125,8 +178,14 @@ public:
         return head->data;
     }
 
-    //Iterator begin();
-    //Iterator end();
+    Iterator<T> begin()
+    {
+        return Iterator<T>(head);
+    }
+    Iterator<T> end()
+    {
+        return Iterator<T>(nullptr);
+    }
 
     //void insert(Iterator at, const T& elem);
 
