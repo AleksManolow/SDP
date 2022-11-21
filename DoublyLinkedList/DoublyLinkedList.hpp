@@ -187,7 +187,14 @@ public:
         return Iterator<T>(nullptr);
     }
 
-    //void insert(Iterator at, const T& elem);
+    void insert(Iterator<T> at, const T& elem)
+    {
+        Node* newNode = new Node(elem);
+	    Node* itNode = at.current;
+
+	    newNode->next = itNode->next;
+	    itNode->next = newNode;
+    }
 
     ~DoublyLinkedList()
     {

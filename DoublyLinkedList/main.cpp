@@ -19,6 +19,16 @@ int main()
     {
         std::cout << *it << std::endl;
     }
-    
+
+    Iterator<int> secIt = DLL.begin();
+    secIt++;
+
+    DLL.insert(secIt, 45);
+
+    for (auto it : DLL)
+    {
+        std::cout << it << std::endl;
+    }
+
     return 0;
 }
