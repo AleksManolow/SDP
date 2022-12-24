@@ -74,26 +74,24 @@ void exemplaryInput(std::vector<std::string>& citiesNames,
 }
 SkipList* creatListOfCities(std::vector<std::string>& citiesNames)
 {
-    //Changes need to be made here
     SkipList* cities = nullptr;
-    for (size_t i = citiesNames.size() - 1; i >= 0; i--)
+    for (int i = citiesNames.size() - 1; i >= 0; i--)
     {
         SkipList* newList = new SkipList(citiesNames[i]);
         newList->next = cities;
         cities = newList;
-        std::cout << cities->city << std::endl;
     }
     return cities;
 }
 SkipList* findCity(SkipList* cities, std::string name)
 {
-    while (cities->city != name && cities != nullptr)
+    while (cities->city != name)
     {
         cities = cities->next;
     }
     return cities;
 }
-void addDirectLinks(SkipList* cities, std::vector<std::pair<std::string, std::string>> directLinls)
+void addDirectLinks(SkipList*& cities, std::vector<std::pair<std::string, std::string>> directLinls)
 {
     for (auto citiesNamesDirect : directLinls)
     {
@@ -108,11 +106,11 @@ void printSkipList(SkipList* cities)
     while (cities)
     {
         std::cout << cities->city << std::endl;
-        cities = cities->next;
         if (cities->skip != nullptr)
         {
             std::cout << "(" << cities->skip->city << ")" << std::endl;
         }
+        cities = cities->next;  
     }
 }
 void clean(SkipList*& n) {
