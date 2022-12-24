@@ -8,7 +8,9 @@ struct SkipList
     SkipList* next;
     SkipList* skip;
 };
-int main()
+void readInput(std::vector<std::string>& cities,
+    std::vector<std::pair<std::string, std::string>>& directLinls,
+    std::vector<std::string>& citiesToVisit)
 {
     //Read Cities
     int n;
@@ -51,6 +53,16 @@ int main()
 	{
 		citiesToVisit.push_back(tempCity);
 	}
+
+}
+int main()
+{
+    std::vector<std::string> cities;
+    std::vector<std::pair<std::string, std::string>> directLinls;
+    std::vector<std::string> citiesToVisit;
+
+    //ReadInput
+    readInput(cities, directLinls, citiesToVisit);
     
     return 0;
 }
