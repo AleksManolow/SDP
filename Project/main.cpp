@@ -100,7 +100,47 @@ void addDirectLinks(SkipList*& cities, std::vector<std::pair<std::string, std::s
         firstCity->skip = secondCity;
     }
 }
-
+bool canUseDirectRoute(SkipList* cities, std::vector<std::string> citiesToVisit)
+{
+    SkipList* afterSkipCity = cities->skip; 
+    cities = cities->next;
+    while (cities != afterSkipCity)
+    {
+        for (auto item : citiesToVisit)
+        {
+            if (cities->city == item)
+            {
+                return false;
+            }   
+        }
+        cities = cities->next;
+    }
+    return true;
+}
+void shortestSequence(SkipList* cities, std::vector<std::string> citiesToVisit)
+{
+    while(cities != nullptr)
+    {
+        for (auto it = citiesToVisit.begin(); it != citiesToVisit.end(); ++it)
+        {
+            if (*it == cities->city)
+            {
+                citiesToVisit.erase(it, it + 1);
+                break;
+            }
+        }
+        std::cout << cities->city << ' ';
+        if (canUseDirectRoute(cities, citiesToVisit))
+        {
+            cities = cities->skip;
+        }
+        else
+        {
+            cities = cities->next;
+        }
+    }
+    std::cout << std::endl;
+}
 void printSkipList(SkipList* cities)
 {
     while (cities)
@@ -133,8 +173,11 @@ int main()
     addDirectLinks(cities, directLinls);
 
     //Print SkipList
-    printSkipList(cities);
+    //printSkipList(cities);
     
+    //Solution
+    shortestSequence(cities, citiesToVisit);
+
     //Delete Memory
     clean(cities);
 
