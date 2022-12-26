@@ -104,6 +104,8 @@ bool canUseDirectRoute(SkipList* cities, std::vector<std::string> citiesToVisit)
 {
     SkipList* afterSkipCity = cities->skip; 
     cities = cities->next;
+    //it goes through any cities that I can skip by taking the direct route and 
+    //checks if any of those cities have it in the city-to-visit vector
     while (cities != afterSkipCity)
     {
         for (auto item : citiesToVisit)
@@ -119,8 +121,10 @@ bool canUseDirectRoute(SkipList* cities, std::vector<std::string> citiesToVisit)
 }
 void shortestSequence(SkipList* cities, std::vector<std::string> citiesToVisit)
 {
+    std::vector<std::string> sequenceOfCities;
     while(cities != nullptr)
     {
+        //I check if the city they are in is there in the vector of cities to visit and if it is, I remove it
         for (auto it = citiesToVisit.begin(); it != citiesToVisit.end(); ++it)
         {
             if (*it == cities->city)
@@ -129,8 +133,9 @@ void shortestSequence(SkipList* cities, std::vector<std::string> citiesToVisit)
                 break;
             }
         }
-        std::cout << cities->city << ' ';
-        if (canUseDirectRoute(cities, citiesToVisit))
+        sequenceOfCities.push_back(cities->city); 
+        //checking if I can use the shortcut if there is one
+        if (cities->skip != nullptr && canUseDirectRoute(cities, citiesToVisit))
         {
             cities = cities->skip;
         }
@@ -139,7 +144,20 @@ void shortestSequence(SkipList* cities, std::vector<std::string> citiesToVisit)
             cities = cities->next;
         }
     }
-    std::cout << std::endl;
+
+    //Print
+    if (!citiesToVisit.empty())
+    {
+        std::cout << "No such path found!" << std::endl;
+    }
+    else
+    {
+        for (auto city : sequenceOfCities)
+        {
+            std::cout << city << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 void printSkipList(SkipList* cities)
 {
@@ -175,7 +193,7 @@ int main()
     //Print SkipList
     //printSkipList(cities);
     
-    //Solution
+    //Solution - A)
     shortestSequence(cities, citiesToVisit);
 
     //Delete Memory
