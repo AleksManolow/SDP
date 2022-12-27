@@ -80,7 +80,13 @@ int main()
 
     taskManager.creatListOfCities(citiesNames);
     taskManager.addDirectLinks(directLinls);
-    taskManager.shortestSequence(citiesToVisit);
+    std::vector<std::string> sequenceOfCities = taskManager.shortestSequence(citiesToVisit);
+    //Print-A
+    for (auto city : sequenceOfCities)
+    {
+        std::cout << city << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }

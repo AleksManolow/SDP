@@ -15,7 +15,6 @@ TaskManager::~TaskManager()
         delete temp;
     }
 }
-
 void TaskManager::creatListOfCities(std::vector<std::string>& citiesNames)
 {
     for (int i = citiesNames.size() - 1; i >= 0; i--)
@@ -75,7 +74,7 @@ bool TaskManager::canUseDirectRoute(SkipList* cities, std::vector<std::string> c
     }
     return true;
 }
-void TaskManager::shortestSequence(std::vector<std::string> citiesToVisit)
+std::vector<std::string> TaskManager::shortestSequence(std::vector<std::string> citiesToVisit)
 {
     SkipList* cities = listOfCities;
     std::vector<std::string> sequenceOfCities;
@@ -102,17 +101,18 @@ void TaskManager::shortestSequence(std::vector<std::string> citiesToVisit)
         }
     }
 
-    //Print
-    if (!citiesToVisit.empty())
-    {
-        std::cout << "No such path found!" << std::endl;
-    }
-    else
-    {
-        for (auto city : sequenceOfCities)
-        {
-            std::cout << city << " ";
-        }
-        std::cout << std::endl;
-    }
+    //Print-is imported into a function in the command reader
+    // if (!citiesToVisit.empty())
+    // {
+    //     std::cout << "No such path found!" << std::endl;
+    // }
+    // else
+    // {
+    //     for (auto city : sequenceOfCities)
+    //     {
+    //         std::cout << city << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    return sequenceOfCities;
 }

@@ -19,7 +19,7 @@ public:
     void creatListOfCities(std::vector<std::string>& citiesNames);
     void addDirectLinks(std::vector<std::pair<std::string, std::string>> directLinls);
     void printSkipList();
-    void shortestSequence(std::vector<std::string> citiesToVisit);
+    std::vector<std::string> shortestSequence(std::vector<std::string> citiesToVisit);
 };
 
 #endif
