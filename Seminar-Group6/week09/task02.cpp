@@ -1,21 +1,27 @@
 #include<iostream>
+#include<vector>
 struct Node
 {
     int key;
     Node* left;
     Node* right;
 
-    Node(int _key):key(_key), left(nullptr), right(nullptr){}
+    Node(int _key, Node* _left = nullptr, Node* _right = nullptr):key(_key), left(_left), right(_right){}
 };
-bool isContains(Node* tree, int value)
+Node* buildFromRec(const std::vector<int>& v, int start, int end)
 {
-    if(!tree)
-        return false;
-    if(tree->key == value)
-        return true;
-    if(tree->key > value)
-        return isContains(tree->left, value);
-    return isContains(tree->right, value);
+    if (end < start)
+    {
+        return nullptr;
+    }
+    
+    int mid = (end - start) / 2 + start;
+    
+    return new Node(v[mid], buildFromRec(v, start, mid - 1), buildFromRec(v, mid + 1, end));
+}
+Node* buildFrom(const std::vector<int>& v)
+{
+    return buildFromRec(v, 0, v.size() - 1);
 }
 void clean(Node*& n) {
     if (n == nullptr) return;
@@ -23,17 +29,25 @@ void clean(Node*& n) {
     clean(n->right);
     delete n;
 }
+void print(Node* n)
+{
+    if (n == nullptr)
+    {
+        return;
+    }
+    
+    std::cout << n->key << " ";
+    print(n->left);
+    print(n->right);
+
+}
 int main()
 {
-    Node* test = new Node(100);
-    test->left = new Node(50);
-    test->right = new Node(140);
-    test->left->left = new Node(25);
+    std::vector<int> v = { 1, 2, 3, 4, 5 };
+    Node* test = buildFrom(v);
+    
+    print(test);
 
-    std::cout << (isContains(test, 140) == true) << std::endl;
-    std::cout << (isContains(test, 25) == true) << std::endl;
-    std::cout << (isContains(test, 0) == false) << std::endl;
-    std::cout << (isContains(test, 150) == false) << std::endl;
     clean(test); 
 
     return 0;
