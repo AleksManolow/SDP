@@ -38,10 +38,13 @@ int main()
 
     Node* thirdTree = new Node(100);
     thirdTree->left = new Node(50);
-    thirdTree->right = new Node(10);
+    thirdTree->right = new Node(140);
     thirdTree->left->left = new Node(25);
 
     std::cout << areEqualTree(firstTree, thirdTree) << std::endl;
-
+    clean(firstTree);
+    clean(secoundTree);
+    clean(thirdTree);
+    
     return 0;
 }
