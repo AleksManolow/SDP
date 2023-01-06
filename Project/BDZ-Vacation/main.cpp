@@ -1,33 +1,19 @@
-#include<iostream>
-#include<vector>
-#include<sstream>
-#include<map>
-#include "CommandReader.h"
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include"../../doctest.h"
 
-void exemplaryInput(std::vector<std::string>& citiesNames,
-    std::vector<std::pair<std::string, std::string>>& directLinls,
-    std::vector<std::string>& citiesToVisit)
-{
-    //Cities
-    citiesNames = {"Sofia", "Pazardzhik", "Plovdiv", "Dimitrovgrad", "StaraZagora", "NovaZagora", "Yambol", "Karnobat", "Burgas"};
+#include "Tests.h"
 
-    //Direct links
-    directLinls = {
-        { "Sofia", "Plovdiv" },
-        { "Plovdiv", "NovaZagora" },
-        { "Dimitrovgrad", "NovaZagora" },
-        { "StaraZagora", "Yambol" },
-        { "NovaZagora", "Burgas" }
-    };
+// #include<iostream>
+// #include<vector>
+// #include<sstream>
+// #include<map>
+// #include "CommandReader.h"
 
-    //Cities to visit
-    citiesToVisit = {"Plovdiv", "StaraZagora", "Yambol"};
-}
-int main()
-{
+// int main()
+// {
 
-    CommandReader commandReader;
-    commandReader.start();
+//     CommandReader commandReader;
+//     commandReader.start();
     
-    return 0;
-}
+//     return 0;
+// }
