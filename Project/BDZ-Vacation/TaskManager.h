@@ -16,6 +16,11 @@ public:
     TaskManager();
     ~TaskManager();
     
+    SkipList* getListOfCities()
+    {
+        return listOfCities;
+    }
+    
     void creatListOfCities(std::vector<std::string>& citiesNames);
     void addDirectLinks(std::vector<std::pair<std::string, std::string>> directLinls);
     void printSkipList();
