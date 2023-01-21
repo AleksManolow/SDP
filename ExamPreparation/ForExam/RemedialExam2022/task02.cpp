@@ -38,16 +38,16 @@ void release(Node*& n) {
     delete n;
 }
 //C)
-// size_t toArray(Node* tree, int* output)
-// {
-//     if (tree == nullptr)
-//     {
-//         return 0;
-//     }
-//     toArray(tree->left, (++output));
-//     *(output) = tree->data;
-//     toArray(tree->right, (++output));
-// }
+size_t toArray(Node* tree, int* output)
+{
+    if (tree == nullptr)
+    {
+        return 0;
+    }
+    
+    *(output++) = tree->data;
+    return 1 + toArray(tree->left, output++) + toArray(tree->right, output++);
+}
 void print(Node* n)
 {
     if (n == nullptr)
@@ -68,8 +68,21 @@ int main()
     Node* test = toTree(array, 6);
     
     print(test);
+    std::cout << std::endl;
+
+    int* output = new int[6];
+
+    int size = toArray(test, output);
+    std::cout << size << std::endl;
+
+    for (size_t i = 0; i < 6; i++)
+    {
+        std::cout << output[i] << " "; 
+    }
 
     release(test); 
     delete array;
+    delete output;
+
     return 0;
 }
