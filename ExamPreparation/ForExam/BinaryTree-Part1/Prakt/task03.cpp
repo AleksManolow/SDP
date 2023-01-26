@@ -29,6 +29,31 @@ void print(Node* root)
         print(root->children[i]);
     }
 }
+int size(Node* root)
+{
+    if (!root)
+        return 0;
+    int hight = 0;
+    for (size_t i = 0; i < root->children.size(); i++)
+    {
+        hight += size(root->children[i]);
+    }
+    return 1 + hight;
+}
+void getLevel(Node* root, int k)
+{
+    if (!root)
+        return;
+    if (k == 0)
+    {
+        std::cout << root->data << ' ';
+        return;
+    }
+    for (size_t i = 0; i < root->children.size(); i++)
+    {
+        getLevel(root->children[i], k - 1);
+    }
+}
 int main()
 {
     Node* root = new Node(10);
@@ -46,6 +71,14 @@ int main()
     root->children[2]->children.push_back(new Node(4));
 
     print(root);
+
+    std::cout << std::endl;
+
+    std::cout << size(root) << std::endl;
+
+    getLevel(root, 3);
+
+    std::cout << std::endl;
 
     deleteTree(root);
 
