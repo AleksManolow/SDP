@@ -1,7 +1,7 @@
 # :books: Data structures and programming course at FMI Sofia Universit
 
 
-#### :pushpin: Practicum content by weeks:
+#### :pushpin: Seminar content by weeks:
 
 ###### :one: Pointers and memory. Data structure definition. Complexity.
 
