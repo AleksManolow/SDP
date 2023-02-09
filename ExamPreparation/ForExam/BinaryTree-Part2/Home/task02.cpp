@@ -31,16 +31,13 @@ void onlyNodes(Node* tree, std::vector<int>& nodes)
     nodes.push_back(tree->data);
     onlyNodes(tree->left, nodes);
 }
-Node* buildFromRec(const std::vector<int>& v, int start, int end)
+void buildFromRec(Node* tree, const std::vector<int> v, int id)
 {
-    if (end < start)
-    {
-        return nullptr;
-    }
-    
-    int mid = (end - start) / 2 + start;
-    
-    return new Node(v[mid], buildFromRec(v, start, mid - 1), buildFromRec(v, mid + 1, end));
+    if (!tree)
+        return;
+    buildFromRec(tree->right, v, id);
+    tree->data = v[id++];
+    buildFromRec(tree->left, v, id);
 }
 void convert(Node*& tree)
 {
@@ -50,7 +47,7 @@ void convert(Node*& tree)
     {
         newNodes[i] += newNodes[i - 1];
     }
-    tree = buildFromRec(newNodes, 0, newNodes.size());
+    buildFromRec(tree, newNodes, 0);
 }
 void print(Node* tree)
 {
