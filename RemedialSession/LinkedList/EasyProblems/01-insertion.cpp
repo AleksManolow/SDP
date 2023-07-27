@@ -28,6 +28,37 @@ void pushNode(Node*& ll, int value)
     newNode->next = ll;
     ll = newNode;
 }
+//Function Insert a Node On Given Position in Linked List
+void insertOnPosition(Node*& node, int new_data, int pos)
+{
+    if (pos == 0)
+    {
+        Node* newNode = new Node();
+        newNode->data = new_data;
+        newNode->next = node;
+        node = newNode;
+    }
+    else
+    {
+        Node* tempNode = node;
+        while (pos != 1 && node->next != nullptr)
+        {
+            node = node->next;
+            pos--;
+        }
+
+        Node* newNode = new Node();
+        newNode->data = new_data;
+
+        if (node->next == nullptr)
+            newNode->next = nullptr;
+        else
+            newNode->next = node->next;
+
+        node->next = newNode;
+        node = tempNode;
+    }
+}
 int main()
 {
     Node* linkedList = new Node();
@@ -36,7 +67,7 @@ int main()
     linkedList->next->data = 15;
     linkedList->next->next = nullptr;
 
-    pushNode(linkedList, 16);
+    insertOnPosition(linkedList, 8, 1);
 
     print(linkedList);
 
